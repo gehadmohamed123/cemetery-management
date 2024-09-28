@@ -3,21 +3,22 @@ import { Link } from 'react-router-dom';
 import './Navbar.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
-// import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.png';
 
 export default function Navbar({userData, logout}) {
   return (
     <>
-      {/* <header className="header">
+      <header className="header">
         <div className="container">
           <div className="head-p">
           <img className="logo" src={logo} alt="Logo" />
           <p>
-              <span>مقابر</span><sub>أهالي الشوبك الغربي</sub>
+            <span>مقابر</span>
+            <sub>أهالي الشوبك الغربي</sub>
             </p>
           </div>
         </div>
-      </header> */}
+      </header>
 
       <nav className="nav">
         <div className="container">
@@ -37,7 +38,7 @@ export default function Navbar({userData, logout}) {
                  <Link to="/" className="disnone home" title="الرئيسية">
                  <FontAwesomeIcon icon={faHome} />
                  </Link>
-                 <Link to="/" className="toggle active" title="الرئيسية">الرئيسية</Link>
+                 <Link to="/" className="toggle active " title="الرئيسية">الرئيسية</Link>
                </li>
                <li><Link to="/man" title="الرجال">الرجال</Link></li>
                <li><Link to="/woman" title="النساء">النساء</Link></li>

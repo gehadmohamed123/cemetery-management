@@ -1,36 +1,23 @@
 .footer {
-    background-color: #282c34; /* لون خلفية داكن */
-    color: white; /* لون النص أبيض */
-    padding: 20px;
-    text-align: center;
-    position: relative; /* لضبط موضع الفوتر بشكل صحيح */
-    bottom: 0; /* جعل الفوتر في الأسفل */
-    left: 0;
-    right: 0;
-  }
-  
-  .footer-content {
-    max-width: 800px; /* أقصى عرض للفوتر */
-    margin: auto; /* توسيط المحتوى */
-  }
-  
-  .footer a {
-    color: #61dafb; /* لون الروابط */
-    text-decoration: none;
-  }
-  
-  .footer a:hover {
-    text-decoration: underline; /* تأثير عند تمرير الماوس */
-  }
-  
-  /* استجابة التصميم */
-  @media (max-width: 600px) {
-    .footer {
-      padding: 15px; /* تقليل الحشوة على الشاشات الصغيرة */
-    }
-  
-    .footer h4, .footer p {
-      font-size: 14px; /* تقليل حجم الخط */
-    }
-  }
-  
+  background-color:rgba(51, 51, 51, 0.88);
+  padding: 30px 0;
+  font-size: 22px;
+  color: rgb(242, 242, 242);
+  text-align: center
+}
+
+.footer .info {
+ justify-content: center;
+  display: flex;
+  gap: 50px;
+  margin-top: 10px;
+  margin-left: 50px;
+  font-weight: bold;
+  margin: 0 20px;
+  transition: all linear .3s;
+}
+
+.footer .info p ul li{
+text-decoration: none;
+list-style: none;
+}

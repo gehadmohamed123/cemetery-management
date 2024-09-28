@@ -1,15 +1,28 @@
-/* Header Styling */
-/* Header Styling */
-.header {
-    text-align: center;
-    background-color: var(--header-background); /* لون الخلفية */
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--main-color); /* خط سفلي */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0;
+  font-family: caito-regular, system-ui, tahoma, monospace, Arial, 'Courier New', Courier;
 }
 .cursor-pointer{
   cursor: pointer;
 }
 
+.header {
+    text-align: center;
+    background-color: rgba(51, 51, 51, 0.88) ;
+    padding:5px 0 10px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: fit-content;
+    min-height: 75px;
+    transition: all linear .3s;
+    border-bottom: rgb(32, 158, 196);
+    z-index: 100;
+}
 .head-p {
     display: flex;
     align-items: center;
@@ -22,106 +35,200 @@
     max-width: 150px;
     height: auto;
     margin-bottom: 1rem;
+    user-select: none;
+    background-size: cover;
 }
-
-.head-p p {
-    font-size: 1.8rem;
-    color: var(--main-color); /* لون النص */
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 2px;
+.header::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1.5px;
+  background-color: rgb(32, 158, 196);
+  bottom: 0;
+  right: 0;
+  border-radius: 20px;
 }
-
+.header .head-p {
+  position: relative;
+}
+.header .head-p .logo {
+  position: absolute;
+  width: 100%;
+  height: 120px;
+  left: 50%;
+  top: 68%;
+  opacity: 0.05;
+  transform: translate(-50%, -50%);
+  filter: grayscale();
+}
+.header p {
+  position: relative;
+  font-size: 30px;
+  font-weight: bold;
+  word-spacing: 1px;
+  color: rgb(242, 242, 242);
+  margin-bottom: 15px;
+  line-height: 1;
+}
+.header p span {
+  font-size: 36px;
+  color: rgb(32, 158, 196);
+  font-family: "Cairo", sans-serif;
+  letter-spacing: -1px;
+}
 .head-p p sub {
-    font-size: 1.2rem;
-    color: var(--text-color); /* لون النص الفرعي */
-    margin-top: 0.5rem;
-    font-style: italic;
+  position: relative;
+  top: 20px;
+  right: 5px;
+  font-size: 24px;
 }
 
-/* General styling for the navigation bar */
 .nav {
-    background-color: #f8f9fa;
-    padding: 10px 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(102, 102, 102, 0.624);
+  position: fixed;
+  top: 75px;
+  max-height: 70px;
+  min-height: 70px;
+  height: 70px;
+  z-index: 344;
   }
   
   .nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .nav .links ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav .links ul li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    transition: color 0.3s ease;
-  }
-  
-  .nav .links ul li a:hover {
-    color: #007bff;
-  }
-  
-  .nav .links ul li a.active {
-    color: #007bff;
-  }
-  
-  .nav .sreech {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav .sreech i {
-    font-size: 24px;
-    color: #007bff;
-    cursor: pointer;
-  }
-  
-  .nav input[type="text"] {
-    padding: 5px 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-  }
-  
-  .nav input[type="text"]::placeholder {
-    color: #aaa;
-  }
-
-  /* Combining container styles */
-.container {
-    padding: 0 15px;
-    margin: 0 auto;
+    position: relative;
+    max-height: fit-content;
+    min-height: 70px;
+    height: 100%;
+    transition: all linear .3s;
+    min-width: 100%;
+    max-width: 100%;
     width: 100%;
-}
-
-@media (min-width: 576px) {
-    .container { max-width: 540px; }
-}
-
-@media (min-width: 768px) {
-    .container { max-width: 720px; }
-}
-
-@media (min-width: 992px) {
-    .container { max-width: 960px; }
-}
-
-@media (min-width: 1200px) {
-    .container { max-width: 1140px; }
-}
-
-/* @font-face {
-    font-family: 'Cairo';
-    src: url('../assets/fonts/Cairo-Black.ttf') format('truetype');
-    font-weight: 900; 
-    font-style: normal;
   }
-   */
+  .nav .container::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: var(--main-color);
+    bottom: 0;
+    right: 0;
+    border-radius: 20px;
+}
+.nav .container input {
+  position: absolute;
+  width: calc(100% - 40px);
+  padding: 20px;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  bottom: -86%;
+  margin: 0 10px;
+  transition: all linear .3s;
+  display: none;
+}
+
+.nav .container .sreech {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.nav .container .sreech i {
+  padding: 23px 20px;
+  margin: 0;
+  color: rgb(32, 158, 196);
+  font-size: 22px;
+  cursor: pointer;
+  transition: all linear .3s;
+}
+
+.nav .container .sreech i:hover {
+  transform: scale(1.1);
+}
+
+.nav .container .links {
+  flex: 1;
+  width: 100%;
+  display: inline-block;
+  height: 100%;
+}
+.nav .container .links ul {
+  height: 100%;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+  
+.nav .container .links ul li {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.nav .container .links ul li a {
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  color: rgb(242, 242, 242);
+  position: relative;
+  transition: all linear .3s;
+  height: 100%;
+  width: 90px;
+  display: flex;
+  align-items: center;
+}
+
+.nav .container .links ul li i {
+  font-size: 18px;
+  color: rgb(32, 158, 196);
+  width: 100%;
+}
+
+  
+.nav .container .links ul li a::after {
+  content: '';
+  transition: all linear .3s;
+  position: absolute;
+  top: 0;
+  right: -100%;
+  height: 2px;
+  width: 100%;
+  background-color: rgb(32, 158, 196);
+}
+
+.nav .container .links ul li a:hover::after {
+  right: 0;
+}
+
+.nav .container .links ul li a::before {
+  content: '';
+  transition: all linear .3s;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  height: 100%;
+  width: 100%;
+  background-color:  rgba(237, 237, 237, 0.514);
+}
+
+.nav .container .links ul li a:hover::before {
+  left: 0;
+}
+.nav .container .links ul li .home {
+  display: none;
+}
+.nav .container .links ul li a:hover {
+  text-decoration: none;
+}
+
+.nav .container .links ul li .active {
+  color: rgb(15, 199, 255)
+}

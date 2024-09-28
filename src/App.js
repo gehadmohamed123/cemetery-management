@@ -21,7 +21,7 @@ import GraveDetails from "./components/Admin/GraveDetails/GraveDetails";
 function App () {
   useEffect(() => {
     if (localStorage.getItem('userToken') !== null) {
-      saveUserData(); // This should only run once
+      saveUserData(); 
     }
   }, []);
   

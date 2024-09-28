@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0;
+  font-family: caito-regular, system-ui, tahoma, monospace, Arial, 'Courier New', Courier;
+}
+
 .offline{
   background-color: #f9f9f9;
   box-shadow: 10px 10px 10px #000;
@@ -6,6 +15,91 @@
   left: 50px;
   bottom: 50px;
   z-index: 9999;
+}
+
+main.landing {
+  background-image: url(../../assets/1.jpg);
+  background-size: cover;
+  height: calc(100vh);
+  /* filter: grayscale(); */
+  position: relative;
+  overflow: hidden;
+  padding-top: 100px; 
+}
+
+main.landing .text-box {
+  padding: 40px 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 22;
+  margin-top: 70px;
+  background-color: rgba(9, 139, 175, 0.664);
+}
+main.landing .text-box .content {
+  width: 700px;
+}
+
+main.landing .text-box p {
+  font-size: 18px;
+  line-height: 2;
+  color: rgb(242, 242, 242);
+}
+
+main.landing .text-box h1{
+  color:rgba(2, 54, 69, 0.664);
+}
+
+main.landing .text-box p span {
+  color:rgba(2, 54, 69, 0.664);
+  font-weight: bold;
+  font-size: 20px;
+  padding: 3px 1px;
+}
+.services {
+  padding-top: rgb(158 165 173);
+  padding-bottom: 100px;
+}
+
+.services .container .sections .box {
+  padding: 20px;
+  box-shadow: 4px 4px 4px #777;
+  transition: all linear .3s;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.863);
+  border: 1px solid rgb(222, 222, 222);
+  min-height: 320px;
+}
+
+.services .container .sections .box:hover {
+  box-shadow: 6px 6px 7px #555;
+  transform: scale(1.05);
+}
+
+
+.services .container .sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 30px 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.services .container .sections .box h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color:  rgb(32, 158, 196);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.services .container .sections .box p {
+  color: rgb(102, 102, 102);
+  font-size: 16px;
+  line-height: 2;
 }
 .burials-cards {
     display: flex;
