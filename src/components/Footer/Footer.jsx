@@ -10,7 +10,7 @@ export default function Footer() {
         <div className='back'>
         <h4>حسين صبري السنوطي</h4>
         <p>
-          البريد الإلكتروني:{' '}
+          البريد الإلكتروني:{' '}<br/>
           <a href="mailto:sabryhusseinhussein@gmail.com">
             sabryhusseinhussein@gmail.com
           </a>

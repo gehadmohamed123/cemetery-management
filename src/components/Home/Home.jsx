@@ -49,45 +49,35 @@ export default function HomePage() {
     </div>
   </main>
   <div class="services">
-    <div class="container">
-      <div class="main-heading">
-        <h2>الخدمات</h2>
-        <p>يعمل الموقع على تنظيم عملية الدفن، ومعرفة حالة كل عين داخل المقابر (فارغة - ممتلئة).<br/>كما يسعى إلى حفظ
-          بيانات المتوفيين والرجوع لها في أي وقت.</p>
-      </div>
-      <div class="sections">
-       <Link to="/man">
-        <a>
-          <section class="box">
-            <h3>مدافن الرجال</h3>
-            <p>يحتوي قسم مدافن الرجال على أسماء جميع الرجال الذين توفاهم الله من قرية الشوبك الغربي</p>
-          </section>
-        </a>
-        </Link> 
-        <Link to='/woman'>
-        <a>
-          <section class="box">
-            <h3>مدافن النساء</h3>
-            <p>يحتوي قسم مدافن النساء على أسماء جميع النساء الذين توفاهم الله من قرية الشوبك الغربي</p>
-          </section>
-        </a>
-        </Link>  
-     <Link to='/bones'>
-     <a>
-          <section class="box">
-            <h3>مدافن العظام</h3>
-            <p>يحتوي قسم مدافن العظام على أسماء جميع الرجال والنساء الذين توفاهم الله من قرية الشوبك الغربي وتم نقل
-              رفاتهم الى مدافن العظام</p>
-          </section>
-        </a>
-     </Link>
-
-
-      </div>
+  <div class="container">
+    <div class="main-heading">
+      <h2>الخدمات</h2>
+      <p>يعمل الموقع على تنظيم عملية الدفن، ومعرفة حالة كل عين داخل المقابر (فارغة - ممتلئة). كما يسعى إلى حفظ بيانات المتوفيين والرجوع لها في أي وقت.</p>
+    </div>
+    <div class="sections">
+      <Link to="/man">
+        <section class="box">
+          <h3>مدافن الرجال</h3>
+          <p>يحتوي قسم مدافن الرجال على أسماء جميع الرجال الذين توفاهم الله من قرية الشوبك الغربي.</p>
+        </section>
+      </Link>
+      <Link to="/woman">
+        <section class="box">
+          <h3>مدافن النساء</h3>
+          <p>يحتوي قسم مدافن النساء على أسماء جميع النساء الذين توفاهم الله من قرية الشوبك الغربي.</p>
+        </section>
+      </Link>
+      <Link to="/bones">
+        <section class="box">
+          <h3>مدافن العظام</h3>
+          <p>يحتوي قسم مدافن العظام على أسماء جميع الرجال والنساء الذين توفاهم الله وتم نقل رفاتهم الى مدافن العظام.</p>
+        </section>
+      </Link>
     </div>
   </div>
-      {/* <div className="home-container">
-        <h1>مرحباً بكم في موقع مقابر الشوبك الغربي</h1>
+</div>
+
+      <div className="home-container">
         <h2 style={{ textAlign: 'center' }}>وفيات آخر ثلاث أيام</h2>
         <div className="burials-cards">
           {recentBurials.map((grave) => (
@@ -104,7 +94,18 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </div> */}
+      </div>
+
+      <div class="protfolio">
+    <div class="container">
+      <div class="main-heading">
+        <h2 class="after">حداد</h2>
+        <p>خالص العزاء والمواساه لأهل الفقيد <br/>نسأل الله تعالى أن يتغمده بواسع رحمته وأن يلهم أهله وذويه الصبر
+          والسلوان
+        </p>
+      </div>
+      </div>
+    </div>
     </>
   );
 }
