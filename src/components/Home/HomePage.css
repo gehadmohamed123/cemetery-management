@@ -163,7 +163,8 @@ main.landing .text-box p span {
 .services .sections {
   display: flex;
   gap: 30px;
-  justify-items: center;
+  justify-content: center; 
+  flex-wrap: wrap; 
   width: 100%;
 }
 
@@ -175,7 +176,12 @@ main.landing .text-box p span {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #ddd;
   min-height: 280px; 
+  max-width: 300px;  
+  flex: 1; 
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
 }
 
 .services .container .sections .box:hover {
@@ -183,21 +189,28 @@ main.landing .text-box p span {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Box Content */
 .services .container .sections .box h3 {
   font-size: 24px;
   font-weight: bold;
   color: #209ec4;
   margin-bottom: 15px;
-  text-decoration: none;
 }
 
 .services .container .sections .box p {
   color: #666;
   font-size: 16px;
   line-height: 1.6;
+}
+
+.services a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.services a:hover {
   text-decoration: none;
 }
+
 
 /* Special Header */
 .special-header {
@@ -283,36 +296,50 @@ main.landing .text-box p span {
   width: 70%; 
 }
 
-article.article {
-  padding-top: 100px;
-  padding-bottom: 100px;
+.articles-container {
+  padding: 100px 0;
   background-color: #dee2e6;
 }
 
-.container .articles {
+.articles {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
+  justify-content: center;
 }
 
-.container .articles .article {
+.article-card {
   padding: 20px 10px;
   background-color: rgba(255, 255, 255, 0.863);
   border-radius: 10px;
   box-shadow: 3px 3px 5px #666;
-  transition: all linear .3s;
+  transition: all 0.3s linear;
+  min-height: 150px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.container .articles .article:hover {
+.article-card:hover {
   transform: scale(1.05);
 }
 
-.container .articles .article h2 {
+.article-card h2 {
   color: rgba(9, 139, 175, 0.664);
   font-weight: bold;
   font-size: 26px;
   text-align: center;
 }
+
+.articles a {
+  text-decoration: none; 
+}
+
+.articles a:hover {
+  text-decoration: none; 
+}
+
 
 .about {
   padding-top: 100px;

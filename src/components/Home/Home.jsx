@@ -113,29 +113,29 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      <article className="articles-container">
+  <div className="container">
+    <div className="main-heading">
+      <h2>مقالات</h2>
+      <p>مجموعة من المقالات المبسطة تحتوي على بعض المعلومات <br/> بهدف التوعية ونشر الثقافة الصحيحة بهذا الشأن.</p>
+    </div>
+    <div className="articles">
+      {error && <p className="error">{error}</p>}
+      {articles.length === 0 ? (
+        <p>لا توجد مقالات حتى الآن.</p>
+      ) : (
+        articles.map((article) => (
+          <a href={`/ArticleDetail/${article._id}`} key={article._id}>
+            <div className="article-card">
+              <h2>{article.title}</h2>
+            </div>
+          </a>
+        ))
+      )}
+    </div>
+  </div>
+</article>
 
-      <article class="article">
-        <div class="container">
-          <div class="main-heading">
-            <h2>مقالات</h2>
-            <p>مجموعة من المقالات المبسطة تحتوي على بعض المعلومات <br/> بهدف التوعية ونشر الثقافة الصحيحة بهذا الشأن.</p>
-          </div>
-          <div class="articles">
-            {error && <p className="error">{error}</p>}
-            {articles.length === 0 ? (
-              <p>لا توجد مقالات حتى الآن.</p>
-            ) : (
-              articles.map((article) => (
-                <a href={`/ArticleDetail/${article._id}`} key={article._id}>
-                  <div class="article">
-                    <h2>{article.title}</h2>
-                  </div>
-                </a>
-              ))
-            )}
-          </div>
-        </div>
-      </article>
 
       <div class="about">
     <div class="container">

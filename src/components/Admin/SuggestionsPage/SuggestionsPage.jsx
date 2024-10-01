@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import './SuggestionsPage.css'; // لا تنسى التأكد من وجود ملف CSS للتنسيق
+import './SuggestionsPage.css'; 
 
 export default function SuggestionsPage() {
   const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState('');
-  const [status, setStatus] = useState('pending'); // الحالة الافتراضية للعرض
+  const [status, setStatus] = useState('pending'); 
+  const token = localStorage.getItem('token');
 
-  // جلب الاقتراحات بناءً على الحالة عند تحميل الصفحة أو عند تغيير الحالة
   useEffect(() => {
     fetchSuggestionsByStatus(status);
   }, [status]);
@@ -14,21 +14,43 @@ export default function SuggestionsPage() {
   // جلب الاقتراحات بناءً على الحالة
   const fetchSuggestionsByStatus = async (status) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/suggestion/status/${status}`);
+      // تحقق من وجود التوكن
+      if (!token) {
+        setError('Token is missing. Please log in again.');
+        return;
+      }
+
+      const response = await fetch(`http://localhost:5000/api/suggestion/status/${status}`, { // تم تصحيح علامات التنصيص
+        headers: {
+          'Authorization': `Bearer ${token}` // التوكن يتم إرساله هنا
+        }
+      });
+
+      if (response.status === 401) {
+        throw new Error('Unauthorized: Invalid token');
+      }
+
       const data = await response.json();
       setSuggestions(data);
     } catch (error) {
-      setError('Error fetching suggestions by status');
+      setError(error.message || 'Error fetching suggestions by status');
     }
   };
 
   // تحديث حالة الاقتراح إلى "approved" أو "rejected"
   const updateStatus = async (id, newStatus) => {
     try {
+      // تحقق من وجود التوكن
+      if (!token) {
+        setError('Token is missing. Please log in again.');
+        return;
+      }
+
       const response = await fetch(`http://localhost:5000/api/suggestion/status/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // تم تصحيح الهيدر
         },
         body: JSON.stringify({ status: newStatus }),
       });
@@ -108,6 +130,6 @@ export default function SuggestionsPage() {
           </li>
         ))}
       </ul>
-    </div>
-  );
+    </div>
+  );
 }
