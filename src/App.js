@@ -17,6 +17,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import {Offline, Online} from 'react-detect-offline';
 import ShowGraves from "./components/Admin/ShowGraves/ShowGraves";
 import GraveDetails from "./components/Admin/GraveDetails/GraveDetails";
+import ArticleDetail from "./components/User/ArticleDetails/ArticleDetail";
 
 function App () {
   useEffect(() => {
@@ -42,11 +43,12 @@ function App () {
       { path: 'bones', element: <Bones/> },
       { path: 'suggest', element: <Suggestion/> },
       { path: 'contact', element: <Contact/> },
+      {path: "/ArticleDetail/:id", element: <ArticleDetail/>},
       { path: 'suggestions', element: <ProtectedRoute userData={userData}><SuggestionsPage/></ProtectedRoute> },
       { path: 'creategrave', element: <ProtectedRoute userData={userData}><CreateGrave/></ProtectedRoute> },
       { path: 'register', element: <ProtectedRoute userData={userData}><RegisterPage/></ProtectedRoute> },
       { path: 'showgraves', element: <ProtectedRoute userData={userData}><ShowGraves/></ProtectedRoute> },
-      { path: 'graves/:graveId', element: <ProtectedRoute userData={userData}><GraveDetails/></ProtectedRoute> }, // Added GraveDetails route
+      { path: 'graves/:graveId', element: <ProtectedRoute userData={userData}><GraveDetails/></ProtectedRoute> }, 
       { path: 'login', element: <Login saveUserData={saveUserData}/> }
     ]}
   ]);
