@@ -18,6 +18,7 @@ import {Offline, Online} from 'react-detect-offline';
 import ShowGraves from "./components/Admin/ShowGraves/ShowGraves";
 import GraveDetails from "./components/Admin/GraveDetails/GraveDetails";
 import ArticleDetail from "./components/User/ArticleDetails/ArticleDetail";
+import GraveDetailsUser from "./components/User/GraveDetailsUser/GraveDetailsUser";
 
 function App () {
   useEffect(() => {
@@ -48,7 +49,8 @@ function App () {
       { path: 'creategrave', element: <ProtectedRoute userData={userData}><CreateGrave/></ProtectedRoute> },
       { path: 'register', element: <ProtectedRoute userData={userData}><RegisterPage/></ProtectedRoute> },
       { path: 'showgraves', element: <ProtectedRoute userData={userData}><ShowGraves/></ProtectedRoute> },
-      { path: 'graves/:graveId', element: <ProtectedRoute userData={userData}><GraveDetails/></ProtectedRoute> }, 
+      { path: 'graves/:graveId', element: <ProtectedRoute userData={userData}><GraveDetails/></ProtectedRoute> },
+      { path: 'grave-details-user/:graveId', element: <GraveDetailsUser/> },
       { path: 'login', element: <Login saveUserData={saveUserData}/> }
     ]}
   ]);

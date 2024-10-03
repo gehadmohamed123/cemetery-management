@@ -12,11 +12,15 @@ export default function CreateGrave() {
     setMessage('');
     setError('');
 
+    // جلب التوكن من localStorage أو sessionStorage
+    const token = localStorage.getItem('userToken');
+
     try {
       const response = await fetch('http://localhost:5000/api/graves', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // إضافة الـ Authorization هنا
         },
         body: JSON.stringify({ gender, number }),
       });

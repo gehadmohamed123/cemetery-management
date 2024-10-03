@@ -5,24 +5,21 @@ export default function SuggestionsPage() {
   const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState('');
   const [status, setStatus] = useState('pending'); 
-  const token = localStorage.getItem('token');
-
+  const token = localStorage.getItem('userToken');
   useEffect(() => {
     fetchSuggestionsByStatus(status);
   }, [status]);
 
-  // جلب الاقتراحات بناءً على الحالة
   const fetchSuggestionsByStatus = async (status) => {
     try {
-      // تحقق من وجود التوكن
       if (!token) {
         setError('Token is missing. Please log in again.');
         return;
       }
 
-      const response = await fetch(`http://localhost:5000/api/suggestion/status/${status}`, { // تم تصحيح علامات التنصيص
+      const response = await fetch(`http://localhost:5000/api/suggestion/status/${status}`, {     
         headers: {
-          'Authorization': `Bearer ${token}` // التوكن يتم إرساله هنا
+          'Authorization': `Bearer ${token}`     
         }
       });
 
@@ -37,10 +34,8 @@ export default function SuggestionsPage() {
     }
   };
 
-  // تحديث حالة الاقتراح إلى "approved" أو "rejected"
   const updateStatus = async (id, newStatus) => {
     try {
-      // تحقق من وجود التوكن
       if (!token) {
         setError('Token is missing. Please log in again.');
         return;
@@ -50,7 +45,7 @@ export default function SuggestionsPage() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` // تم تصحيح الهيدر
+          'Authorization': `Bearer ${token}` 
         },
         body: JSON.stringify({ status: newStatus }),
       });
@@ -59,7 +54,6 @@ export default function SuggestionsPage() {
         throw new Error('Failed to update suggestion status');
       }
 
-      // تحديث الاقتراحات في الواجهة بعد تغيير الحالة
       setSuggestions((prevSuggestions) =>
         prevSuggestions.map((suggestion) =>
           suggestion._id === id ? { ...suggestion, status: newStatus } : suggestion
@@ -70,7 +64,6 @@ export default function SuggestionsPage() {
     }
   };
 
-  // تحويل الحالة من الإنجليزية للعربية
   const getStatusInArabic = (status) => {
     switch (status) {
       case 'pending':
@@ -89,7 +82,6 @@ export default function SuggestionsPage() {
       <h2>الاقتراحات</h2>
       {error && <p className="error-message">{error}</p>}
       
-      {/* قائمة اختيار الحالة */}
       <div className="status-filter">
         <label htmlFor="status">اختر الحالة:</label>
         <select

@@ -27,27 +27,27 @@ export default function RegisterPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to create user');
+        throw new Error(data.message || 'فشل في إنشاء المستخدم');
       }
 
-      setMessage('User created successfully');
+      setMessage('تم إنشاء المستخدم بنجاح');
       setName('');
       setEmail('');
       setPassword('');
     } catch (err) {
-      setError(err.message || 'Error creating user');
+      setError(err.message || 'حدث خطأ أثناء إنشاء المستخدم');
     }
   };
 
   return (
     <div className="register-page">
-      <h2>Register New User</h2>
+      <h2>تسجيل مستخدم جديد</h2>
       {message && <p className="success-message">{message}</p>}
       {error && <p className="error-message">{error}</p>}
       
       <form onSubmit={handleRegister}>
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">الاسم:</label>
           <input
             type="text"
             id="name"
@@ -57,7 +57,7 @@ export default function RegisterPage() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">البريد الإلكتروني:</label>
           <input
             type="email"
             id="email"
@@ -67,7 +67,7 @@ export default function RegisterPage() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">كلمة المرور:</label>
           <input
             type="password"
             id="password"
@@ -76,7 +76,7 @@ export default function RegisterPage() {
             required
           />
         </div>
-        <button type="submit" className="register-button">Register</button>
+        <button type="submit" className="register-button">تسجيل</button>
       </form>
     </div>
   );

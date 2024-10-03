@@ -1,23 +1,49 @@
 .footer {
-  background-color:rgba(51, 51, 51, 0.88);
+  background-color: rgba(51, 51, 51, 0.88);
   padding: 30px 0;
-  font-size: 22px;
+  font-size: 18px; /* قللت حجم النص ليتناسب مع الشاشات المختلفة */
   color: rgb(242, 242, 242);
   text-align: center;
+  position: relative; /* للتأكد من وضع الفوتر بشكل طبيعي */
+  width: 100%;
+}
+
+.footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto; /* يضمن محاذاة محتوى الفوتر للوسط */
 }
 
 .footer .info {
- justify-content: center;
   display: flex;
+  justify-content: space-around; /* يوزع العناصر بشكل متساوٍ */
+  flex-wrap: wrap; /* يضمن تجاوب التصميم مع الشاشات الأصغر */
   gap: 50px;
-  margin-top: 10px;
-  margin-left: 50px;
-  font-weight: bold;
-  margin: 0 20px;
-  transition: all linear .3s;
+  margin-top: 20px;
 }
 
-.footer .info p ul li{
-text-decoration: none;
-list-style: none;
+.footer .info > div {
+  flex: 1;
+  min-width: 250px; /* يضمن عدم تصغير البلوكات أكثر من اللازم */
+}
+
+.footer a {
+  color: #f2f2f2; /* لضبط لون النص داخل الروابط */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ddd;
+}
+
+.footer .back, .footer .design, .footer .front {
+  text-align: left; /* يضمن أن النص داخل كل بلوك يكون بمحاذاة اليسار */
+}
+
+.footer ul {
+  padding-left: 0;
+}
+
+.footer ul li {
+  list-style: none;
 }

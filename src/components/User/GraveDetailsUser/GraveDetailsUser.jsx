@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import './GraveDetailsUser.css'; 
 
-export default function GraveDetails() {
+export default function GraveDetailsUser() {
   const { graveId } = useParams(); 
   const [graveDetails, setGraveDetails] = useState(null);
 
@@ -31,36 +32,25 @@ export default function GraveDetails() {
     return <p>Loading...</p>;
   }
 
-  const handleBuryPersonClick = () => {
-    console.log('دفن شخص');
-  };
-
   return (
     <div className="grave-details-container">
       <h2 className="grave-details-title">تفاصيل المقبرة</h2>
-      {graveDetails.buriedPersons && graveDetails.buriedPersons.length > 0 ? (
-        <table className="grave-details-table">
-          <thead>
-            <tr>
-              <th>الاسم</th>
-              <th>تاريخ الدفن</th>
+      <table className="grave-details-table">
+        <thead>
+          <tr>
+            <th>الاسم</th>
+            <th>تاريخ الدفن</th>
+          </tr>
+        </thead>
+        <tbody>
+          {graveDetails.buriedPersons.map((person, index) => (
+            <tr key={index}>
+              <td>{person.name}</td>
+              <td>{formatDate(person.burialDate)}</td> 
             </tr>
-          </thead>
-          <tbody>
-            {graveDetails.buriedPersons.map((person, index) => (
-              <tr key={index}>
-                <td>{person.name}</td>
-                <td>{formatDate(person.burialDate)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>المقبرة فارغة</p> 
-      )}
-      <button className="bury-person-button" onClick={handleBuryPersonClick}>
-        دفن شخص
-      </button>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
