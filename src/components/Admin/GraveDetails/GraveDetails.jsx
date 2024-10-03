@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 export default function GraveDetails() {
-  const { graveId } = useParams(); 
+  const { graveId } = useParams();
   const [graveDetails, setGraveDetails] = useState(null);
+  const navigate = useNavigate(); // Add the useNavigate hook
 
   useEffect(() => {
     const fetchGraveDetails = async () => {
@@ -32,7 +33,7 @@ export default function GraveDetails() {
   }
 
   const handleBuryPersonClick = () => {
-    console.log('دفن شخص');
+    navigate(`/add-dead/${graveId}`);
   };
 
   return (
@@ -56,7 +57,7 @@ export default function GraveDetails() {
           </tbody>
         </table>
       ) : (
-        <p>المقبرة فارغة</p> 
+        <p>المقبرة فارغة</p>
       )}
       <button className="bury-person-button" onClick={handleBuryPersonClick}>
         دفن شخص
