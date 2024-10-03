@@ -76,8 +76,12 @@ export default function ShowGraves() {
             filteredGraves.map((grave) => (
               <tr key={grave._id}>
                 <td>{grave.number}</td>
-                <td>{grave.status }</td> 
-                <td>{grave.gender === 'رجال' ? 'رجال' : 'نساء'}</td>
+                <td>{grave.status }</td>
+                <td>
+                  {grave.gender === 'رجال' ? 'رجال' : 
+                   grave.gender === 'نساء' ? 'نساء' : 
+                   'عظام'}
+                </td>
                 <td>
                   <button 
                     onClick={() => handleGraveClick(grave._id)} 
