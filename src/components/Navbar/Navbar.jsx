@@ -23,30 +23,32 @@ export default function Navbar({userData, logout}) {
       <nav className="nav">
         <div className="container">
           <div className="links">
-            {userData?
-            <ul>
-              <li><Link to="/suggestions" title=" ادارة الاقتراحات"> ادارة الاقتراحات</Link></li>
-              <li><Link to="/creategrave" title=" انشاء مقبرة">انشاء مقبرة</Link></li>
-              <li><Link to="/register" title=" انشاء ادمن"> انشاء ادمن</Link></li>
-              <li><Link to="/showgraves" title="عرض المقابر">  عرض المقابر </Link></li>
-              <li className='cursor-pointer' onClick={logout}> تسجيل الخروج</li>
-              </ul>
-              
-              :
-               <ul>
-               <li>
-                 <Link to="/" className="disnone home" title="الرئيسية">
-                 <FontAwesomeIcon icon={faHome} />
-                 </Link>
-                 <Link to="/" className="toggle active " title="الرئيسية">الرئيسية</Link>
-               </li>
-               <li><Link to="/man" title="الرجال">الرجال</Link></li>
-               <li><Link to="/woman" title="النساء">النساء</Link></li>
-               <li><Link to="/bones" title="العظام">العظام</Link></li>
-               <li><Link to="/suggest" title="اقتراحك">اقتراحك</Link></li>
-               <li><Link to="/contact" title="تواصل معنا">تواصل معنا</Link></li>
-               <li><Link to="/login" title="تسجيل الدخول">تسجيل الدخول</Link></li>
-             </ul>}
+          {userData ? (
+  <ul>
+    <li><Link to="/suggestions" title=" ادارة الاقتراحات"> ادارة الاقتراحات</Link></li>
+    <li><Link to="/creategrave" title=" انشاء مقبرة">انشاء مقبرة</Link></li>
+    <li><Link to="/register" title=" انشاء ادمن"> انشاء ادمن</Link></li>
+    <li><Link to="/showgraves" title="عرض المقابر">  عرض المقابر </Link></li>
+    <li><Link to="/articles" title="  المقالات">  المقالات</Link></li>
+    <li className='cursor-pointer' onClick={logout}> تسجيل الخروج</li>
+  </ul>
+) : (
+  <ul>
+    <li>
+      <Link to="/" className="disnone home" title="الرئيسية">
+        <FontAwesomeIcon icon={faHome} />
+      </Link>
+      <Link to="/" className="toggle active " title="الرئيسية">الرئيسية</Link>
+    </li>
+    <li><Link to="/man" title="الرجال">الرجال</Link></li>
+    <li><Link to="/woman" title="النساء">النساء</Link></li>
+    <li><Link to="/bones" title="العظام">العظام</Link></li>
+    <li><Link to="/suggest" title="اقتراحك">اقتراحك</Link></li>
+    <li><Link to="/approved" title=" الاقتراحات المقبولة"> الاقتراحات المقبولة</Link></li>
+    <li><Link to="/login" title="تسجيل الدخول">تسجيل الدخول</Link></li>
+  </ul>
+)}
+
            
           </div>
           <input type="text" id="sreech" placeholder="إبحث في الموقع" />

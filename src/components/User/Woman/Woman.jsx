@@ -30,41 +30,48 @@ export default function Woman() {
 
   const filteredGraves = graves.filter(grave => {
     const normalizedSearchTerm = normalizeString(searchTerm);
+    
     return (
-      grave.buriedPersons.some(person =>
+      grave.buriedPersons.some(person => 
         normalizeString(person.name).includes(normalizedSearchTerm)
-      ) ||
+      ) || 
+      grave.number.toString().includes(normalizedSearchTerm) || 
       normalizedSearchTerm === '' 
     );
   });
-
+  
   return (
     <div className="woman-container">
       <input
         type="text"
-        placeholder="ابحث عن اسم الشخص..."
+        placeholder="ابحث عن اسم الشخص أو رقم المقبرة...."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)} 
         className="search-input"
       />
-      {filteredGraves.map((grave) => (
-        <div
-          key={grave._id}
-          className={`grave-card ${grave.status === 'متاحة' ? 'available' : 'not-available'}`}
-        >
-          <h2>رقم المقبرة: {grave.number}</h2>
-          <p>الحالة: {grave.status}</p>
-          <p>
-            متاح بعد:{" "}
-            {grave.status === 'متاحة'
-              ? 'الآن'
-              : `${grave.daysUntilAvailable} يوم`}
-          </p>
-          <button onClick={() => navigate(`/grave-details-user/${grave._id}`)}>
-            عرض المزيد
-          </button>
-        </div>
-      ))}
+
+      {filteredGraves.length > 0 ? (
+        filteredGraves.map((grave) => (
+          <div
+            key={grave._id}
+            className={`grave-card ${grave.status === 'متاحة' ? 'available' : 'not-available'}`}
+          >
+            <h2>رقم المقبرة: {grave.number}</h2>
+            <p>الحالة: {grave.status}</p>
+            <p>
+              متاح بعد:{" "}
+              {grave.status === 'متاحة'
+                ? 'الآن'
+                : `${grave.daysUntilAvailable} يوم`}
+            </p>
+            <button onClick={() => navigate(`/grave-details-user/${grave._id}`)}>
+              عرض المزيد
+            </button>
+          </div>
+        ))
+      ) : (
+        <p className="no-results-message">لا توجد نتائج مطابقة للبحث.</p>
+      )}
     </div>
   );
 }

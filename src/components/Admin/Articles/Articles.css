@@ -1,0 +1,72 @@
+.articles-container {
+    padding: 100px 0;
+    background-color: #dee2e6;
+  }
+  
+  .articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .delete-btn {
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+  }
+  
+  .article-card {
+    position: relative; 
+    padding: 20px 10px;
+    background-color: rgba(255, 255, 255, 0.863);
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px #666;
+    transition: all 0.3s linear;
+    min-height: 150px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .article-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .articles-container h2 {
+    color: rgba(9, 139, 175, 0.664);
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+  }
+  
+  .articles a {
+    text-decoration: none; 
+  }
+  
+  .articles a:hover {
+    text-decoration: none; 
+  }
+  .add-article-btn {
+    margin-top: 20px; 
+    padding: 10px 15px; 
+    font-size: 16px; 
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+  }
+  
+  .add-article-btn:hover {
+    background-color: #0056b3; 
+  }
+  
+  

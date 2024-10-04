@@ -32,26 +32,31 @@ export default function Man() {
     navigate(`/grave-details-user/${graveId}`); 
   };
 
-  const filteredGraves = graves.filter(grave => {
-    const normalizedSearchTerm = normalizeString(searchTerm);
-    return (
-      grave.buriedPersons.some(person => 
-        normalizeString(person.name).includes(normalizedSearchTerm)
-      ) || 
-      normalizedSearchTerm === '' 
-    );
-  });
-
+const filteredGraves = graves.filter(grave => {
+  const normalizedSearchTerm = normalizeString(searchTerm);
+  
   return (
-    <div className="woman-container">
-      <input
-        type="text"
-        placeholder="ابحث عن اسم الشخص..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)} 
-        className="search-input"
-      />
-      {filteredGraves.map((grave) => (
+    grave.buriedPersons.some(person => 
+      normalizeString(person.name).includes(normalizedSearchTerm)
+    ) || 
+    grave.number.toString().includes(normalizedSearchTerm) || 
+    normalizedSearchTerm === '' 
+  );
+});
+
+
+return (
+  <div className="woman-container">
+    <input
+      type="text"
+      placeholder="ابحث عن اسم الشخص أو رقم المقبرة...."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)} 
+      className="search-input"
+    />
+    
+    {filteredGraves.length > 0 ? (
+      filteredGraves.map((grave) => (
         <div
           key={grave._id}
           className={`grave-card ${grave.status === 'متاحة' ? 'available' : 'not-available'}`}
@@ -68,7 +73,11 @@ export default function Man() {
             عرض المزيد
           </button>
         </div>
-      ))}
-    </div>
-  );
+      ))
+    ) : (
+      <p className="no-results-message">لا توجد نتائج مطابقة للبحث.</p>
+    )}
+  </div>
+);
+
 }

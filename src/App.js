@@ -6,7 +6,6 @@ import Man from "./components/User/Man/Man";
 import Woman from './components/User/Woman/Woman';
 import Bones from './components/User/Bones/Bones';
 import Suggestion from './components/User/Suggestion/Suggestion';
-import Contact from "./components/User/Contact/Contact";
 import Login from './components/User/Login/Login';
 import { useState } from 'react';
 import {jwtDecode} from 'jwt-decode';  
@@ -20,13 +19,18 @@ import GraveDetails from "./components/Admin/GraveDetails/GraveDetails";
 import ArticleDetail from "./components/User/ArticleDetails/ArticleDetail";
 import GraveDetailsUser from "./components/User/GraveDetailsUser/GraveDetailsUser";
 import AddDead from "./components/Admin/AddDead/AddDead";
+import ApprovedSuggest from "./components/User/ApprovedSuggest/ApprovedSuggest";
+import Articles from "./components/Admin/Articles/Articles";
+import AddArticle from "./components/Admin/AddArticle/AddArticle";
 
 function App () {
   useEffect(() => {
     if (localStorage.getItem('userToken') !== null) {
       saveUserData(); 
+    } else {
     }
   }, []);
+  
   
   const [userData, setUserData] = useState(null);
 
@@ -34,9 +38,15 @@ function App () {
     let encodedToken = localStorage.getItem('userToken');
     if (encodedToken) {
       let decodedToken = jwtDecode(encodedToken);
-      setUserData(decodedToken); 
+      if (decodedToken.exp * 1000 > Date.now()) {
+        setUserData(decodedToken); 
+      } else {
+        localStorage.removeItem('userToken');
+        setUserData(null);
+      }
     }
   }
+  
   let routers = createBrowserRouter([
     { 
       path: '/', 
@@ -47,7 +57,7 @@ function App () {
         { path: 'woman', element: <Woman/> },
         { path: 'bones', element: <Bones/> },
         { path: 'suggest', element: <Suggestion/> },
-        { path: 'contact', element: <Contact/> },
+        { path: 'approved', element: <ApprovedSuggest/> },
         { path: 'ArticleDetail/:id', element: <ArticleDetail/> },
         { path: 'suggestions', element: <ProtectedRoute userData={userData}><SuggestionsPage/></ProtectedRoute> },
         { path: 'creategrave', element: <ProtectedRoute userData={userData}><CreateGrave/></ProtectedRoute> },
@@ -56,7 +66,9 @@ function App () {
         { path: 'graves/:graveId', element: <ProtectedRoute userData={userData}><GraveDetails/></ProtectedRoute> },
         { path: 'grave-details-user/:graveId', element: <GraveDetailsUser/> },
         { path: 'login', element: <Login saveUserData={saveUserData}/> },
-        { path: 'add-dead/:graveId', element: <ProtectedRoute userData={userData}><AddDead/></ProtectedRoute> }
+        { path: 'add-dead/:graveId', element: <ProtectedRoute userData={userData}><AddDead/></ProtectedRoute> },
+        { path: 'articles', element: <ProtectedRoute userData={userData}><Articles/></ProtectedRoute> },
+        { path: 'addarticle', element: <ProtectedRoute userData={userData}><AddArticle/></ProtectedRoute> }
       ]
     }
   ]);
