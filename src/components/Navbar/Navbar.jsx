@@ -44,6 +44,7 @@ export default function Navbar({userData, logout}) {
     <li><Link to="/woman" title="النساء">النساء</Link></li>
     <li><Link to="/bones" title="العظام">العظام</Link></li>
     <li><Link to="/suggest" title="اقتراحك">اقتراحك</Link></li>
+    <li><Link to="/contact" title="  تواصل معنا">  تواصل معنا</Link></li>
     <li><Link to="/approved" title=" الاقتراحات المقبولة"> الاقتراحات المقبولة</Link></li>
     <li><Link to="/login" title="تسجيل الدخول">تسجيل الدخول</Link></li>
   </ul>

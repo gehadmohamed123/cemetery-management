@@ -8,26 +8,29 @@ export default function Footer() {
       <p>جميع الحقوق محفوظة لأهالي قرية الشوبك الغربي </p>
       <div className='info'> 
         <div className='back'>
-        <h4>حسين صبري السنوطي</h4>
+        <h4>  Hussein Sabry</h4>
         <p>
-          البريد الإلكتروني:{' '}<br/>
+          : Email{' '}<br/>
           <a href="mailto:sabryhusseinhussein@gmail.com">
             sabryhusseinhussein@gmail.com
           </a>
         </p>
-        <p>رقم الهاتف: 01096586823</p>
-        <p>مطور باك اند و تيستر</p>
+        <p> Phone: 01096586823</p>
+        <p>   Backend Developer & Tester </p>
         </div>
      <div className='design'>
-     <p>تصميم UI: رضا عبد الواحد</p>
-     <p>رقم المصمم: +02 01554528592</p>
+<h4>Reda Abdelwahed</h4>    
+   <p> Phone: +02 01554528592</p>
+   <p>UI Designer</p>
      </div>
        <div className='front'>
-       <p>مشاركين في الفرونت اند:</p>
-        <ul>
-          <li>جهاد محمد</li>
-          <li>شعبان عبدالباسط</li>
-        </ul>
+       <h4>Gehad Mohamed</h4>
+       <p>
+           :Email{' '}<br/>
+          <a href="mailto:gehadmo157@gmail.com">
+         gehadmo157@gmail.com          </a>
+        </p>
+        <p>FrontEnd Developer</p>
        </div>
        
       </div>  

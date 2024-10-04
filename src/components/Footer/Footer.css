@@ -1,33 +1,33 @@
 .footer {
   background-color: rgba(51, 51, 51, 0.88);
   padding: 30px 0;
-  font-size: 18px; /* قللت حجم النص ليتناسب مع الشاشات المختلفة */
+  font-size: 18px; 
   color: rgb(242, 242, 242);
   text-align: center;
-  position: relative; /* للتأكد من وضع الفوتر بشكل طبيعي */
+  position: relative; 
   width: 100%;
 }
 
 .footer .footer-content {
   max-width: 1200px;
-  margin: 0 auto; /* يضمن محاذاة محتوى الفوتر للوسط */
+  margin: 0 auto; 
 }
 
 .footer .info {
   display: flex;
-  justify-content: space-around; /* يوزع العناصر بشكل متساوٍ */
-  flex-wrap: wrap; /* يضمن تجاوب التصميم مع الشاشات الأصغر */
+  justify-content: space-around; 
+  flex-wrap: wrap; 
   gap: 50px;
   margin-top: 20px;
 }
 
 .footer .info > div {
   flex: 1;
-  min-width: 250px; /* يضمن عدم تصغير البلوكات أكثر من اللازم */
+  min-width: 250px; 
 }
 
 .footer a {
-  color: #f2f2f2; /* لضبط لون النص داخل الروابط */
+  color: #f2f2f2; 
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -37,13 +37,6 @@
 }
 
 .footer .back, .footer .design, .footer .front {
-  text-align: left; /* يضمن أن النص داخل كل بلوك يكون بمحاذاة اليسار */
+  text-align: left; 
 }
 
-.footer ul {
-  padding-left: 0;
-}
-
-.footer ul li {
-  list-style: none;
-}

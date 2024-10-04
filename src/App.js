@@ -22,6 +22,7 @@ import AddDead from "./components/Admin/AddDead/AddDead";
 import ApprovedSuggest from "./components/User/ApprovedSuggest/ApprovedSuggest";
 import Articles from "./components/Admin/Articles/Articles";
 import AddArticle from "./components/Admin/AddArticle/AddArticle";
+import Contact from "./components/User/Contact/Contact";
 
 function App () {
   useEffect(() => {
@@ -59,6 +60,7 @@ function App () {
         { path: 'suggest', element: <Suggestion/> },
         { path: 'approved', element: <ApprovedSuggest/> },
         { path: 'ArticleDetail/:id', element: <ArticleDetail/> },
+        { path: 'contact', element: <Contact/> },
         { path: 'suggestions', element: <ProtectedRoute userData={userData}><SuggestionsPage/></ProtectedRoute> },
         { path: 'creategrave', element: <ProtectedRoute userData={userData}><CreateGrave/></ProtectedRoute> },
         { path: 'register', element: <ProtectedRoute userData={userData}><RegisterPage/></ProtectedRoute> },
