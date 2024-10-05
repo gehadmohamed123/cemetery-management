@@ -44,7 +44,7 @@ export default function HomePage() {
         <title>مقابر الشوبك الغربي</title>
         <link rel="icon" href="/images/Home.svg" />
       </Helmet>
-      <main class="landing">
+      <main className="landing">
         <div className="overlay"></div>
         <div className="text-box">
           <div className="content">
@@ -57,27 +57,27 @@ export default function HomePage() {
         </div>
       </main>
 
-      <div class="services">
-        <div class="container">
-          <div class="main-heading">
+      <div className="services">
+        <div className="container">
+          <div className="main-heading">
             <h2>الخدمات</h2>
             <p>يعمل الموقع على تنظيم عملية الدفن، ومعرفة حالة كل عين داخل المقابر (فارغة - ممتلئة). كما يسعى إلى حفظ بيانات المتوفيين والرجوع لها في أي وقت.</p>
           </div>
-          <div class="sections">
+          <div className="sections">
             <Link to="/man">
-              <section class="box">
+              <section className="box">
                 <h3>مدافن الرجال</h3>
                 <p>يحتوي قسم مدافن الرجال على أسماء جميع الرجال الذين توفاهم الله من قرية الشوبك الغربي.</p>
               </section>
             </Link>
             <Link to="/woman">
-              <section class="box">
+              <section className="box">
                 <h3>مدافن النساء</h3>
                 <p>يحتوي قسم مدافن النساء على أسماء جميع النساء الذين توفاهم الله من قرية الشوبك الغربي.</p>
               </section>
             </Link>
             <Link to="/bones">
-              <section class="box">
+              <section className="box">
                 <h3>مدافن العظام</h3>
                 <p>يحتوي قسم مدافن العظام على أسماء جميع الرجال والنساء الذين توفاهم الله وتم نقل رفاتهم الى مدافن العظام.</p>
               </section>
@@ -105,10 +105,10 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div class="protfolio">
-        <div class="container">
-          <div class="main-heading">
-            <h2 class="after">حداد</h2>
+      <div className="protfolio">
+        <div className="container">
+          <div className="main-heading">
+            <h2 className="after">حداد</h2>
             <p>خالص العزاء والمواساه لأهل الفقيد <br/>نسأل الله تعالى أن يتغمده بواسع رحمته وأن يلهم أهله وذويه الصبر والسلوان</p>
           </div>
         </div>
@@ -137,10 +137,10 @@ export default function HomePage() {
 </article>
 
 
-      <div class="about">
-    <div class="container">
-      <div class="main-heading">
-        <h2 class="after">عنا</h2>
+      <div className="about">
+    <div className="container">
+      <div className="main-heading">
+        <h2 className="after">عنا</h2>
         <p>تم تصميم هذا الموقع بواسطة شركة <a href="#">السنوطى للبرمجة Web</a>، ويعد هذا الموقع صدقة جارية على روح
           المرحوم
           <span>محمد رضا

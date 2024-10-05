@@ -23,6 +23,8 @@ import ApprovedSuggest from "./components/User/ApprovedSuggest/ApprovedSuggest";
 import Articles from "./components/Admin/Articles/Articles";
 import AddArticle from "./components/Admin/AddArticle/AddArticle";
 import Contact from "./components/User/Contact/Contact";
+import { Helmet } from 'react-helmet';
+import ResetPassword from './components/Admin/ResetPassword/ResetPssword'
 
 function App () {
   useEffect(() => {
@@ -70,6 +72,7 @@ function App () {
         { path: 'login', element: <Login saveUserData={saveUserData}/> },
         { path: 'add-dead/:graveId', element: <ProtectedRoute userData={userData}><AddDead/></ProtectedRoute> },
         { path: 'articles', element: <ProtectedRoute userData={userData}><Articles/></ProtectedRoute> },
+        { path: 'resetpassword', element: <ProtectedRoute userData={userData}><ResetPassword/></ProtectedRoute> },
         { path: 'addarticle', element: <ProtectedRoute userData={userData}><AddArticle/></ProtectedRoute> }
       ]
     }
@@ -78,6 +81,16 @@ function App () {
   
     return (
     <>
+     <Helmet>
+        <meta charset="UTF-8" />
+        <meta
+          name="description"
+          content="هذا الموقع خاص بمدافن أهالي الشوبك الغربي. يتم العمل على تسجيل وتنظيم حالات الوفيات الخاصة بأهالي القرية"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>مقابر الشوبك الغربي</title>
+        <link rel="icon" href="/images/Home.svg" />
+      </Helmet>
     <div>
       <Offline><div className="offline">You Are Offline</div></Offline>
     </div>

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 export default function GraveDetails() {
   const { graveId } = useParams();
-  const [graveDetails, setGraveDetails] = useState(null);
+  const [grave, setGrave] = useState(null);
   const navigate = useNavigate(); 
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function GraveDetails() {
       try {
         const response = await fetch(`http://localhost:5000/api/graves/graves/${graveId}`);
         const data = await response.json();
-        setGraveDetails(data);
+        setGrave(data);
       } catch (error) {
         console.error('Error fetching grave details:', error);
       }
@@ -41,9 +41,9 @@ export default function GraveDetails() {
       });
       
       if (response.ok) {
-        setGraveDetails((prevDetails) => ({
-          ...prevDetails,
-          buriedPersons: prevDetails.buriedPersons.filter(person => person._id !== personId), // Use _id
+        setGrave((prevGrave) => ({
+          ...prevGrave,
+          buriedPersons: prevGrave.buriedPersons.filter(person => person._id !== personId), 
         }));
       } else {
         console.error('Failed to delete person:', await response.json());
@@ -53,7 +53,7 @@ export default function GraveDetails() {
     }
   };
 
-  if (!graveDetails) {
+  if (!grave) {
     return <p>Loading...</p>;
   }
 
@@ -64,7 +64,7 @@ export default function GraveDetails() {
   return (
     <div className="grave-details-container">
       <h2 className="grave-details-title">تفاصيل المقبرة</h2>
-      {graveDetails.buriedPersons && graveDetails.buriedPersons.length > 0 ? (
+      {grave.buriedPersons && grave.buriedPersons.length > 0 ? (
         <table className="grave-details-table">
           <thead>
             <tr>
@@ -74,14 +74,14 @@ export default function GraveDetails() {
             </tr>
           </thead>
           <tbody>
-            {graveDetails.buriedPersons.map((person) => (
-              <tr key={person._id}> {/* Change id to _id */}
+            {grave.buriedPersons.map((person) => (
+              <tr key={person._id}> 
                 <td>{person.name}</td>
                 <td>{formatDate(person.burialDate)}</td>
                 <td>
                   <button 
                     className="btn btn-danger" 
-                    onClick={() => handleDeletePerson(person._id)} // Change id to _id
+                    onClick={() => handleDeletePerson(person._id)} 
                   >
                     حذف
                   </button>
@@ -93,9 +93,12 @@ export default function GraveDetails() {
       ) : (
         <p>المقبرة فارغة</p>
       )}
-      <button className="bury-person-button" onClick={handleBuryPersonClick}>
-        دفن شخص
-      </button>
+
+      {grave && (grave.buriedPersons.length === 0 || (grave.status && grave.status.trim() === 'متاحة')) && (
+        <button className="bury-person-button" onClick={handleBuryPersonClick}>
+          دفن شخص
+        </button>
+      )}
     </div>
   );
 }

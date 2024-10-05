@@ -64,7 +64,7 @@ export default function Woman() {
                 ? 'الآن'
                 : `${grave.daysUntilAvailable} يوم`}
             </p>
-            <button onClick={() => navigate(`/grave-details-user/${grave._id}`)}>
+            <button className='btn btn-primary p-2' onClick={() => navigate(`/grave-details-user/${grave._id}`)}>
               عرض المزيد
             </button>
           </div>

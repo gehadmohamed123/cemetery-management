@@ -4,8 +4,7 @@ import './Login.css';
 import Joi from 'joi';
 import { useNavigate } from 'react-router-dom';
 
-
-export default function Login({saveUserData}) {
+export default function Login({ saveUserData }) {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
@@ -21,16 +20,22 @@ export default function Login({saveUserData}) {
     setUser(myUser);
   }
 
-
-  const handleLogin = async (e) => {
+  const handleLogin = async () => {
     try {
       let { data } = await axios.post('http://localhost:5000/api/auth/login', user);
       if (data.token && data.token.length > 0) {
         setIsLoading(false);
         localStorage.setItem('userToken', data.token);
+        localStorage.setItem('userRole', data.role); 
         saveUserData();
-        navigate('/suggestions');
-        window.location.reload(); // ليس الحل المثالي، ولكنه يمكن أن يكون حلاً مؤقتًا
+
+        if (data.role === 'manager') {
+          navigate('/suggestions');
+        } else if (data.role === 'admin') {
+          navigate('/creategrave');
+        }
+
+        window.location.reload(); // يمكنك تحسين هذا لاحقًا
       } else {
         setIsLoading(false);
         setError(data.message || 'An error occurred during registration');
@@ -44,7 +49,6 @@ export default function Login({saveUserData}) {
       }
     }
   };
-
   
   function submitLoginForm(e) {
     e.preventDefault();
@@ -69,43 +73,41 @@ export default function Login({saveUserData}) {
     return schema.validate(user, { abortEarly: false });
   }
 
-
-
   return (
     <>
-    {errorList.map((err, index) => (
-      <div key={index} className='alert alert-danger my-2'>
-        {err.context.label === 'password' ? 'Password invalid' : err.message}
-      </div>
-    ))}
-    {error.length > 0 && <div className='alert alert-danger my-2'>{error}</div>}
-    <div className="login-container">
-      <h2>تسجيل دخول</h2>
-      <form onSubmit={submitLoginForm}>
-        <div>
-          <label>البريد الإلكتروني:</label>
-          <input
-            type="email"
-            name="email" 
-            onChange={getUserData}
-            required
-          />
+      {errorList.map((err, index) => (
+        <div key={index} className='alert alert-danger my-2'>
+          {err.context.label === 'password' ? 'Password invalid' : err.message}
         </div>
-        <div>
-          <label>كلمة المرور:</label>
-          <input
-            type="password"
+      ))}
+      {error.length > 0 && <div className='alert alert-danger my-2'>{error}</div>}
+      <div className="login-container">
+        <h2>تسجيل دخول</h2>
+        <form onSubmit={submitLoginForm}>
+          <div>
+            <label>البريد الإلكتروني:</label>
+            <input
+              type="email"
+              name="email" 
+              onChange={getUserData}
+              required
+            />
+          </div>
+          <div>
+            <label>كلمة المرور:</label>
+            <input
+              type="password"
               name="password"
-            onChange={getUserData}
-            required
-          />
-        </div>
-        {error && <p className="error">{error}</p>}
-        <button type="submit" className="btn btn-primary btn-block">
-              {isLoading ? <i className='fas fa-spinner fa-spin'></i> : 'تسجيل الدخول'}
-            </button>
-      </form>
-    </div>
+              onChange={getUserData}
+              required
+            />
+          </div>
+          {error && <p className="error">{error}</p>}
+          <button type="submit" className="btn btn-primary btn-block">
+            {isLoading ? <i className='fas fa-spinner fa-spin'></i> : 'تسجيل الدخول'}
+          </button>
+        </form>
+      </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CreateGrave.css'; // لا تنسى إنشاء هذا الملف للتنسيق
+import './CreateGrave.css'; 
 
 export default function CreateGrave() {
   const [gender, setGender] = useState('');
@@ -12,25 +12,39 @@ export default function CreateGrave() {
     setMessage('');
     setError('');
 
-    // جلب التوكن من localStorage أو sessionStorage
     const token = localStorage.getItem('userToken');
 
     try {
+      const checkResponse = await fetch(`http://localhost:5000/api/graves/${number}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (checkResponse.ok) {
+        const existingGrave = await checkResponse.json();
+        if (existingGrave) {
+          setError('رقم المدفن موجود بالفعل.'); 
+          return; 
+        }
+      }
+
       const response = await fetch('http://localhost:5000/api/graves', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, // إضافة الـ Authorization هنا
+          'Authorization': `Bearer ${token}`, 
         },
         body: JSON.stringify({ gender, number }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to create grave');
+        throw new Error('فشل إنشاء المدفن');
       }
 
       const data = await response.json();
-      setMessage(`Grave created successfully with number: ${data.number}`);
+      setMessage(`تم إنشاء المدفن بنجاح برقم: ${data.number}`);
       setGender('');
       setNumber('');
     } catch (error) {

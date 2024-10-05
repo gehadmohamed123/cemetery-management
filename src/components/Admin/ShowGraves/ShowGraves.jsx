@@ -23,6 +23,7 @@ const normalizeString = (str) => {
 export default function ShowGraves() {
   const [graves, setGraves] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [message, setMessage] = useState(''); // إضافة حالة الرسالة
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,6 +42,14 @@ export default function ShowGraves() {
 
   const handleChangeStatus = async (graveId) => {
     const token = localStorage.getItem('userToken'); 
+
+    const graveToUpdate = graves.find(grave => grave._id === graveId);
+
+    // تحقق مما إذا كانت الحالة الحالية "ممتلئة" أو "غير متاحة"
+    if (graveToUpdate.status === 'ممتلئة' || graveToUpdate.status === 'غير متاحة') {
+      setMessage('لا يمكنك تحديث الحالة لأن المقبرة ممتلئة أو غير متاحة.'); // تعيين الرسالة
+      return; // عدم إجراء أي تغيير
+    }
 
     try {
       const response = await axios.put(`http://localhost:5000/api/graves/full/${graveId}`, null, {
@@ -63,21 +72,22 @@ export default function ShowGraves() {
   const uniqueGraves = Array.from(new Set(graves.map(grave => grave._id)))
     .map(id => graves.find(grave => grave._id === id));
 
-    const filteredGraves = graves.filter(grave => {
-      const normalizedSearchTerm = normalizeString(searchTerm);
-      
-      return (
-        grave.buriedPersons.some(person => 
-          normalizeString(person.name).includes(normalizedSearchTerm)
-        ) || 
-        grave.number.toString().includes(normalizedSearchTerm) || 
-        normalizedSearchTerm === '' 
-      );
-    });
+  const filteredGraves = graves.filter(grave => {
+    const normalizedSearchTerm = normalizeString(searchTerm);
+    
+    return (
+      grave.buriedPersons.some(person => 
+        normalizeString(person.name).includes(normalizedSearchTerm)
+      ) || 
+      grave.number.toString().includes(normalizedSearchTerm) || 
+      normalizedSearchTerm === '' 
+    );
+  });
 
   return (
     <div className="container">
       <h2>قائمة المقابر</h2>
+      {message && <p className="alert alert-warning">{message}</p>} {/* عرض الرسالة إذا كانت موجودة */}
       <input 
         type="text" 
         placeholder="أدخل اسم الشخص او رقم المقبرة ......" 
@@ -100,7 +110,7 @@ export default function ShowGraves() {
             filteredGraves.map((grave) => (
               <tr key={grave._id}>
                 <td>{grave.number}</td>
-                <td>{grave.status }</td>
+                <td>{grave.status}</td>
                 <td>
                   {grave.gender === 'رجال' ? 'رجال' : 
                    grave.gender === 'نساء' ? 'نساء' : 
@@ -113,15 +123,15 @@ export default function ShowGraves() {
                   >
                     عرض المزيد
                   </button>
-                  </td>
-                  <td>
+                </td>
+                <td>
                   <button 
                     onClick={() => handleChangeStatus(grave._id)} 
                     className="btn btn-primary" 
                   >
                     تغيير الحالة
                   </button>
-                  </td>
+                </td>
               </tr>
             ))
           ) : (
