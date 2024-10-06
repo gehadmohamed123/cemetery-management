@@ -62,10 +62,6 @@ export default function Navbar({ userData, logout }) {
               </ul>
             )}
           </div>
-          <input type="text" id="sreech" placeholder="إبحث في الموقع" />
-          <div className="sreech">
-            <i className="fas fa-search toggle-sreech" title="بحث"></i>
-          </div>
         </div>
       </nav>
     </>

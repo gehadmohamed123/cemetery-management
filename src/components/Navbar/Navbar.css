@@ -118,40 +118,6 @@
     right: 0;
     border-radius: 20px;
 }
-.nav .container input {
-  position: absolute;
-  width: calc(100% - 40px);
-  padding: 20px;
-  font-size: 18px;
-  outline: none;
-  border: none;
-  border-radius: 30px;
-  bottom: -86%;
-  margin: 0 10px;
-  transition: all linear .3s;
-  display: none;
-}
-
-.nav .container .sreech {
-  position: absolute;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-.nav .container .sreech i {
-  padding: 23px 20px;
-  margin: 0;
-  color: rgb(32, 158, 196);
-  font-size: 22px;
-  cursor: pointer;
-  transition: all linear .3s;
-}
-
-.nav .container .sreech i:hover {
-  transform: scale(1.1);
-}
 
 .nav .container .links {
   flex: 1;

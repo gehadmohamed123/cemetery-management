@@ -15,21 +15,6 @@ export default function CreateGrave() {
     const token = localStorage.getItem('userToken');
 
     try {
-      const checkResponse = await fetch(`http://localhost:5000/api/graves/${number}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-
-      if (checkResponse.ok) {
-        const existingGrave = await checkResponse.json();
-        if (existingGrave) {
-          setError('رقم المدفن موجود بالفعل.'); 
-          return; 
-        }
-      }
-
       const response = await fetch('http://localhost:5000/api/graves', {
         method: 'POST',
         headers: {
@@ -40,7 +25,13 @@ export default function CreateGrave() {
       });
 
       if (!response.ok) {
-        throw new Error('فشل إنشاء المدفن');
+        const errorData = await response.json();
+        if (response.status === 400) {
+          setError(errorData.message || 'حدث خطأ أثناء إنشاء المدفن.');
+        } else {
+          throw new Error('فشل إنشاء المدفن');
+        }
+        return;
       }
 
       const data = await response.json();

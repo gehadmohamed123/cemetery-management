@@ -17,8 +17,11 @@
     font-size: 20px;
     cursor: pointer;
     position: absolute; 
-    top: 10px; 
+    top: 5px; 
     right: 10px; 
+  }
+  .delete-btn:hover{
+background-color: white;
   }
   
   .article-card {

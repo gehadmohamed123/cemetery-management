@@ -23,7 +23,7 @@ const normalizeString = (str) => {
 export default function ShowGraves() {
   const [graves, setGraves] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [message, setMessage] = useState(''); // إضافة حالة الرسالة
+  const [message, setMessage] = useState(''); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,10 +45,10 @@ export default function ShowGraves() {
 
     const graveToUpdate = graves.find(grave => grave._id === graveId);
 
-    // تحقق مما إذا كانت الحالة الحالية "ممتلئة" أو "غير متاحة"
-    if (graveToUpdate.status === 'ممتلئة' || graveToUpdate.status === 'غير متاحة') {
-      setMessage('لا يمكنك تحديث الحالة لأن المقبرة ممتلئة أو غير متاحة.'); // تعيين الرسالة
-      return; // عدم إجراء أي تغيير
+    
+    if (graveToUpdate.status === 'ممتلئة' ) {
+      setMessage('لا يمكنك تحديث الحالة لأن المقبرة ممتلئة.'); 
+      return; 
     }
 
     try {
@@ -87,7 +87,7 @@ export default function ShowGraves() {
   return (
     <div className="container">
       <h2>قائمة المقابر</h2>
-      {message && <p className="alert alert-warning">{message}</p>} {/* عرض الرسالة إذا كانت موجودة */}
+      {message && <p className="alert alert-warning">{message}</p>} 
       <input 
         type="text" 
         placeholder="أدخل اسم الشخص او رقم المقبرة ......" 
