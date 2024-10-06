@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function ApprovedSuggest() {
   const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchApprovedSuggestions = async () => {
@@ -17,6 +19,10 @@ export default function ApprovedSuggest() {
 
     fetchApprovedSuggestions();
   }, []);
+
+  const handleNavigateToSuggest = () => {
+    navigate('/suggest');
+  };
 
   return (
     <div className="container">
@@ -43,6 +49,12 @@ export default function ApprovedSuggest() {
       ) : (
         <p className="text-center">لا توجد اقتراحات مقبولة.</p>
       )}
+
+      <div className=" mt-4">
+        <button className="btn btn-primary" onClick={handleNavigateToSuggest}>
+          اقتراحك
+        </button>
+      </div>
     </div>
   );
 }

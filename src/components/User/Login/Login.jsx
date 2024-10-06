@@ -38,14 +38,15 @@ export default function Login({ saveUserData }) {
         window.location.reload(); // يمكنك تحسين هذا لاحقًا
       } else {
         setIsLoading(false);
-        setError(data.message || 'An error occurred during registration');
+        setError(data.message || 'حدث خطأ أثناء تسجيل الدخول');
       }
     } catch (error) {
       setIsLoading(false);
       if (error.response && error.response.status === 400) {
-        setError(error.response.data || 'Email already exists');
+        const errorMessage = error.response.data.message || 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+        setError(errorMessage);
       } else {
-        setError('An error occurred during registration');
+        setError('حدث خطأ أثناء تسجيل الدخول');
       }
     }
   };
@@ -77,10 +78,10 @@ export default function Login({ saveUserData }) {
     <>
       {errorList.map((err, index) => (
         <div key={index} className='alert alert-danger my-2'>
-          {err.context.label === 'password' ? 'Password invalid' : err.message}
+          {err.context.label === 'password' ? 'كلمة المرور غير صحيحة' : err.message}
         </div>
       ))}
-      {error.length > 0 && <div className='alert alert-danger my-2'>{error}</div>}
+      {error && <div className='alert alert-danger my-2'>{error}</div>}
       <div className="login-container">
         <h2>تسجيل دخول</h2>
         <form onSubmit={submitLoginForm}>

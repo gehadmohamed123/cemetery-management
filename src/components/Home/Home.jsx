@@ -8,6 +8,13 @@ export default function HomePage() {
   const [recentBurials, setRecentBurials] = useState([]);
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState('');
+  
+  const [totalDeaths, setTotalDeaths] = useState(0);
+  const [availableGraves, setAvailableGraves] = useState(0);
+  const [unavailableGraves, setUnavailableGraves] = useState(0);
+  
+  const [maleDeaths, setMaleDeaths] = useState(0);
+  const [femaleDeaths, setFemaleDeaths] = useState(0);
 
   useEffect(() => {
     const fetchRecentBurials = async () => {
@@ -28,8 +35,30 @@ export default function HomePage() {
       }
     };
 
+    const fetchStatistics = async () => {
+      try {
+        const totalDeathsResponse = await axios.get('http://localhost:5000/api/graves/totalDeaths');
+        setTotalDeaths(totalDeathsResponse.data.totalDeaths); 
+
+        const availableGravesResponse = await axios.get('http://localhost:5000/api/graves/available-count');
+        setAvailableGraves(availableGravesResponse.data.availableGravesCount); 
+
+        const unavailableGravesResponse = await axios.get('http://localhost:5000/api/graves/unavailable-count');
+        setUnavailableGraves(unavailableGravesResponse.data.unavailableGravesCount); 
+
+        const maleDeathsResponse = await axios.get('http://localhost:5000/api/graves/maleDeaths');
+        setMaleDeaths(maleDeathsResponse.data.maleDeaths);
+
+        const femaleDeathsResponse = await axios.get('http://localhost:5000/api/graves/femaleDeaths');
+        setFemaleDeaths(femaleDeathsResponse.data.femaleDeaths);
+      } catch (error) {
+        console.error('Error fetching statistics:', error);
+      }
+    };
+
     fetchRecentBurials();
     fetchArticles();
+    fetchStatistics();
   }, []);
 
   return (
@@ -87,7 +116,11 @@ export default function HomePage() {
       </div>
 
       <div className="home-container">
-        <h2 style={{ textAlign: 'center' }}>وفيات آخر ثلاث أيام</h2>
+        <div className="main-heading">
+          <h2>حداد</h2>
+          <p>يقدم هذا القسم معلومات عن الأشخاص الذين تم دفنهم مؤخرًا، مع تفاصيل تاريخ الدفن. نسأل الله تعالى أن يرحمهم ويرحم جميع موتى المسلمين.</p>
+        </div>
+        
         <div className="burials-cards">
           {recentBurials.map((grave) => (
             <div key={grave._id} className="burial-card">
@@ -103,52 +136,78 @@ export default function HomePage() {
             </div>
           ))}
         </div>
+
+        <div className="condolence-section">
+          <p className="condolence-text">
+            خالص العزاء والمواساه لأهل الفقيد <br />
+            نسأل الله تعالى أن يتغمده بواسع رحمته وأن يلهم أهله وذويه الصبر والسلوان
+          </p>
+        </div>
       </div>
 
-      <div className="protfolio">
+      <div className="all-nambers">
+        <div className="overlay"></div>
         <div className="container">
-          <div className="main-heading">
-            <h2 className="after">حداد</h2>
-            <p>خالص العزاء والمواساه لأهل الفقيد <br/>نسأل الله تعالى أن يتغمده بواسع رحمته وأن يلهم أهله وذويه الصبر والسلوان</p>
+          <div className="cotent">
+            <div className="box">
+              <span>{availableGraves}</span>
+              <p>العيون المتاحة</p>
+            </div>
+            <div className="box">
+              <span>{unavailableGraves}</span>
+              <p>العيون غير المتاحة</p>
+            </div>
+            <div className="box">
+              <span>{totalDeaths}</span>
+              <p>إجمالي الوفيات</p>
+            </div>
+            <div className="box">
+              <span>{maleDeaths}</span>
+              <p>وفيات الرجال</p>
+            </div>
+            <div className="box">
+              <span>{femaleDeaths}</span>
+              <p>وفيات النساء</p>
+            </div>
           </div>
         </div>
       </div>
-      <article className="articles-container">
-  <div className="container">
-    <div className="main-heading">
-      <h2>مقالات</h2>
-      <p>مجموعة من المقالات المبسطة تحتوي على بعض المعلومات <br/> بهدف التوعية ونشر الثقافة الصحيحة بهذا الشأن.</p>
-    </div>
-    <div className="articles">
-      {error && <p className="error">{error}</p>}
-      {articles.length === 0 ? (
-        <p>لا توجد مقالات حتى الآن.</p>
-      ) : (
-        articles.map((article) => (
-          <a href={`/ArticleDetail/${article._id}`} key={article._id}>
-            <div className="article-card">
-              <h2>{article.title}</h2>
-            </div>
-          </a>
-        ))
-      )}
-    </div>
-  </div>
-</article>
 
+      <article className="articles-container">
+        <div className="container">
+          <div className="main-heading">
+            <h2>مقالات</h2>
+            <p>مجموعة من المقالات المبسطة تحتوي على بعض المعلومات <br/> بهدف التوعية ونشر الثقافة الصحيحة بهذا الشأن.</p>
+          </div>
+          <div className="articles">
+            {error && <p className="error">{error}</p>}
+            {articles.length === 0 ? (
+              <p>لا توجد مقالات حتى الآن.</p>
+            ) : (
+              articles.map((article) => (
+                <a href={`/ArticleDetail/${article._id}`} key={article._id}>
+                  <div className="article-card">
+                    <h2>{article.title}</h2>
+                  </div>
+                </a>
+              ))
+            )}
+          </div>
+        </div>
+      </article>
 
       <div className="about">
-    <div className="container">
-      <div className="main-heading">
-        <h2 className="after">عنا</h2>
-        <p>تم تصميم هذا الموقع بواسطة شركة <a href="#">السنوطى للبرمجة Web</a>، ويعد هذا الموقع صدقة جارية على روح
-          المرحوم
-          <span>محمد رضا
-            السنوطى</span> نسأل الله تعالى أن يتغمده بواسع رحمته
-        </p>
+        <div className="container">
+          <div className="main-heading">
+            <h2 className="after">عنا</h2>
+            <p>تم تصميم هذا الموقع بواسطة شركة <a href="#">السنوطى للبرمجة Web</a>، ويعد هذا الموقع صدقة جارية على روح
+              المرحوم
+              <span>محمد رضا
+                السنوطى</span> نسأل الله تعالى أن يتغمده بواسع رحمته
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
     </>
   );
 }
